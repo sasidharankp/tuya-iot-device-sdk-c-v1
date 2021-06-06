@@ -1,4 +1,4 @@
-# Farmostat-Tuya-embedded-C-sdk-raspberryPi
+# Farmostat Tuya-embedded-C-sdk-raspberryPi
 
 > This project is developed using Tuya SDK, which enables you to quickly    develop smart devices, branded APP, cloud development project, etc.
 >
@@ -77,7 +77,9 @@ make
 ```
 
 ## APP Screenshots
-![APP Screenshots](assets/images/screenshots/s1.png "device list") ![APP Screenshots](assets/images/screenshots/s2.png "device list")![APP Screenshots](assets/images/screenshots/s3.png "device list")![APP Screenshots](assets/images/screenshots/s4.png "device list")![APP Screenshots](assets/images/screenshots/s5.png "device list")![APP Screenshots](assets/images/screenshots/s6.png "device list")
+![APP Screenshots](assets/images/screenshots/s1.png "device list") ![APP Screenshots](assets/images/screenshots/s2.PNG "APP Home Screen Temperature Tab")
+![APP Screenshots](assets/images/screenshots/s3.PNG "APP Home Screen Temperature Tab")![APP Screenshots](assets/images/screenshots/s4.PNG "APP Home Screen Humidity Tab")
+![APP Screenshots](assets/images/screenshots/s5.png "Temperature chart Screen")![APP Screenshots](assets/images/screenshots/s6.png "Humidity chart Screen")
 
 ### bare minimum debugging prototype
 ![APP Screenshots](assets/images/im1.jpg "device list")
