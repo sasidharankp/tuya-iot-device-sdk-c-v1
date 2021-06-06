@@ -22,9 +22,12 @@
 #define ALARM_PIN 26
 #define FAN_PIN 27
 #define LIGHT_PIN 28
+#define SPRINKLER_PIN 29
+int INPUT_PINS[] = {0, 2 , 7};
+int OUTPUT_PINS[] = {6, 26, 27, 28, 29};
 /* End Of Pin Configurations*/
 
-const char *config_string = "{\"101\":{\"gpio_pin\":\"7\",\"dp_name\":\"Temperature\"},\"102\":{\"gpio_pin\":\"7\",\"dp_name\":\"Humidity\"},\"103\":{\"gpio_pin\":\"0\",\"dp_name\":\"Door\"},\"104\":{\"gpio_pin\":\"2\",\"dp_name\":\"Switch\"},\"105\":{\"gpio_pin\":\"6\",\"dp_name\":\"UV Light\"},\"106\":{\"gpio_pin\":\"27\",\"dp_name\":\"Exhaust Fan\"},\"107\":{\"gpio_pin\":\"26\",\"dp_name\":\"Alarm\"},\"108\":{\"gpio_pin\":\"28\",\"dp_name\":\"Night Light\"}}";
+const char *config_string = "{\"101\":{\"gpio_pin\":\"7\",\"dp_name\":\"Temperature\"},\"102\":{\"gpio_pin\":\"7\",\"dp_name\":\"Humidity\"},\"103\":{\"gpio_pin\":\"0\",\"dp_name\":\"Door\"},\"104\":{\"gpio_pin\":\"2\",\"dp_name\":\"Switch\"},\"105\":{\"gpio_pin\":\"6\",\"dp_name\":\"UV Light\"},\"106\":{\"gpio_pin\":\"27\",\"dp_name\":\"Exhaust Fan\"},\"107\":{\"gpio_pin\":\"26\",\"dp_name\":\"Alarm\"},\"108\":{\"gpio_pin\":\"28\",\"dp_name\":\"Night Light\"},\"109\":{\"gpio_pin\":\"29\",\"dp_name\":\"Sprinkler Switch\"}}";
 const cJSON* config_JSON;
 /* Beginning Of Data points(DP) declaration*/
 #define TEMP_DP "101"
@@ -35,6 +38,7 @@ const cJSON* config_JSON;
 #define FAN_DP "106"
 #define ALARM_DP "107"
 #define LIGHT_DP "108"
+#define SPRINKLER_DP "109"
 /* End Of Data points(DP) declaration */
 
 /* Beginning Of Constants declaration*/
@@ -89,35 +93,9 @@ void user_dp_download_on(tuya_iot_client_t* client, const char* json_dps)
         cJSON* device_details =  cJSON_GetObjectItem(config_JSON, DP_KEY);
         int PIN_NUMBER= atoi(device_details->child->valuestring);
         char *DEVICE_NAME= device_details->child->next->valuestring;
-        //printf("Pin Number of %s is %d and the Device Name is %s \n",DP_KEY, PIN_NUMBER, DEVICE_NAME );
+        printf("Pin Number of %s is %d and the Device Name is %s \n",DP_KEY, PIN_NUMBER, DEVICE_NAME );
         
         actuate_hardware(PIN_NUMBER, DP_VALUE, DEVICE_NAME);
- 
-       /*  switch(atoi(DP_KEY)){
-                    case 105:
-                        printf("UV LIGHT");
-                        sensor_data[2]= DP_VALUE;
-                        actuate_hardware(UV_LED_PIN, DP_VALUE);
-                        break;
-                 
-                    case 106:
-                        printf("EXHAUST FAN");
-                        actuate_hardware(FAN_PIN, DP_VALUE);
-                        break;
-
-                    case 107:
-                        printf("ALARM SWITCH");
-                        actuate_hardware(ALARM_PIN, DP_VALUE);
-                        break;
-                 
-                    case 108:
-                        printf("NIGHT LIGHT");
-                        actuate_hardware(LIGHT_PIN, DP_VALUE);
-                        break;
-
-                    default:
-                        break;
-                    }*/
             
     /* relese cJSON DPS object */
     cJSON_Delete(dps);
@@ -285,13 +263,14 @@ int wiringPI_setup(){
       fprintf (stderr, "Unable to setup wiringPi: %s\n", strerror (errno));
       return 1;
   }
-  pinMode(DHT_PIN, INPUT);
-  pinMode(DOOR_PIN, INPUT);
-  pinMode(SWITCH_PIN, INPUT);
-  pinMode(UV_LED_PIN, OUTPUT);
-  pinMode(FAN_PIN, OUTPUT);
-  pinMode(ALARM_PIN, OUTPUT);
-  pinMode(LIGHT_PIN, OUTPUT);
+  int i;
+  for(i=0; i< sizeof(INPUT_PINS)/sizeof(int); i++) {
+    pinMode(INPUT_PINS[i], INPUT);
+}
+  int j;
+  for(j=0; j< sizeof(OUTPUT_PINS)/sizeof(int); j++) {
+    pinMode(OUTPUT_PINS[j], OUTPUT);
+}
 }
 
 void config_setup(){
@@ -331,6 +310,8 @@ int main(int argc, char **argv){
  
     /* Start tuya iot task */
     tuya_iot_start(&client);
+    
+    //publish_sensor_data(DOOR_PIN, digitalRead(DOOR_PIN), TRUE);
 
     for(;;) {
         /* Loop to receive packets, and handles client keepalive */
