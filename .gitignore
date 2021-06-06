@@ -53,3 +53,6 @@ dkms.conf
 
 # config files
 tuya_config.h
+
+#build
+/build

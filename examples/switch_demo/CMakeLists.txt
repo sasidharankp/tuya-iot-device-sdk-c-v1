@@ -12,7 +12,7 @@ target_link_libraries(
     PUBLIC
         link_core
         qrencode
- 	wiringPi
+        wiringPi
 )
 
 target_include_directories(
