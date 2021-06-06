@@ -1,14 +1,14 @@
-set( DEMO_NAME "switch_demo" )
+set( DEVICE_NAME "farmostat" )
 
 # Demo target.
 add_executable(
-    ${DEMO_NAME}
-        "${DEMO_NAME}.c"
+    ${DEVICE_NAME}
+        "${DEVICE_NAME}.c"
         "qrencode_print.c"
 )
 
 target_link_libraries(
-    ${DEMO_NAME}
+    ${DEVICE_NAME}
     PUBLIC
         link_core
         qrencode
@@ -16,7 +16,7 @@ target_link_libraries(
 )
 
 target_include_directories(
-    ${DEMO_NAME}
+    ${DEVICE_NAME}
     PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}
 )

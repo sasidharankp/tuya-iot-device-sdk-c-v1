@@ -26,7 +26,7 @@ endif()
 # Set global path variables.
 get_filename_component(__root_dir "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
 set(ROOT_DIR ${__root_dir} CACHE INTERNAL "C SDK source root.")
-set(EXAMPLES_DIR "${ROOT_DIR}/examples" CACHE INTERNAL "C SDK examples root.")
+set(ROUTINE_DIR "${ROOT_DIR}/farmostat" CACHE INTERNAL "C SDK farmostat root.")
 set(PLATFORM_DIR "${ROOT_DIR}/platform" CACHE INTERNAL "C SDK platform root.")
 set(LIBRARIES_DIR "${ROOT_DIR}/libraries" CACHE INTERNAL "C SDK libraries root.")
 set(LINKSDK_DIRS "${ROOT_DIR}")
@@ -73,8 +73,8 @@ add_subdirectory( utils )
 # Add link core.
 add_subdirectory( src )
 
-# # Build the demos.
-add_subdirectory( examples )
+# # Build the device code.
+add_subdirectory( farmostat )
 
 
 message(STATUS "------------------------------------------------------------" )
