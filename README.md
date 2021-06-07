@@ -77,12 +77,12 @@ make
 ```
 
 ## APP Screenshots
-![APP Screenshots](assets/images/screenshots/s1.png "device list") ![APP Screenshots](assets/images/screenshots/s2.PNG "APP Home Screen Temperature Tab")
-![APP Screenshots](assets/images/screenshots/s3.PNG "APP Home Screen Temperature Tab")![APP Screenshots](assets/images/screenshots/s4.PNG "APP Home Screen Humidity Tab")
-![APP Screenshots](assets/images/screenshots/s5.png "Temperature chart Screen")![APP Screenshots](assets/images/screenshots/s6.png "Humidity chart Screen")
+![APP Screenshots](assets/images/screenshots/ss1.png "device list") ![APP Screenshots](assets/images/screenshots/ss2.png "APP Home Screen Temperature Tab")
+![APP Screenshots](assets/images/screenshots/ss3.png "APP Home Screen Temperature Tab")![APP Screenshots](assets/images/screenshots/ss4.png "APP Home Screen Humidity Tab")
+![APP Screenshots](assets/images/screenshots/ss5.png "Temperature chart Screen")![APP Screenshots](assets/images/screenshots/ss6.png "Humidity chart Screen")
 
-### bare minimum debugging prototype
-![APP Screenshots](assets/images/im1.jpg "device list")
+### Schematic(For Reference only)
+![APP Screenshots](assets/images/circuit.png "device list")
 ## License
 
 Distributed under the MIT License. For more information, see `LICENSE`.
